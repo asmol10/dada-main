@@ -1,24 +1,37 @@
 <template>
   <q-page padding>
-    <!-- Input field -->
+    <!-- Input 1: Ime klijenta -->
     <q-input 
       rounded 
       outlined 
-      v-model="naziv" 
-      label="Bike name" 
+      v-model="imeKlijenta" 
+      label="Ime klijenta" 
     />
 
-    <!-- Button to trigger printing -->
+    <!-- Input 2: Odredište -->
+    <q-input 
+      rounded 
+      outlined 
+      class="q-mt-md"
+      v-model="odrediste" 
+      label="Odredište" 
+    />
+
+    <!-- Button -->
     <q-btn 
-      label="Print Bike Name" 
+      label="Prikaži podatke" 
       color="primary" 
-      @click="printName"
+      @click="printInfo"
       class="q-mt-md"
     />
 
-    <!-- Display the value -->
+    <!-- Display values -->
     <div class="q-mt-md">
-      <strong>Bike Name:</strong> {{ nazivDisplay }}
+      <strong>Ime klijenta:</strong> {{ imeKlijentaDisplay }}
+    </div>
+
+    <div class="q-mt-sm">
+      <strong>Odredište:</strong> {{ odredisteDisplay }}
     </div>
   </q-page>
 </template>
@@ -26,15 +39,20 @@
 <script setup>
 import { ref } from 'vue'
 
-// Reactive variable bound to input
-const naziv = ref('')
+// Reactive variables for inputs
+const imeKlijenta = ref('')
+const odrediste = ref('')
 
-// Variable to store printed output
-const nazivDisplay = ref('')
+// Reactive variables for display
+const imeKlijentaDisplay = ref('')
+const odredisteDisplay = ref('')
 
-// Function to “print” the name
-function printName() {
-  nazivDisplay.value = naziv.value
-  console.log('Bike name:', naziv.value) // also prints to browser console
+// Function triggered by button
+function printInfo() {
+  imeKlijentaDisplay.value = imeKlijenta.value
+  odredisteDisplay.value = odrediste.value
+  
+  console.log('Ime klijenta:', imeKlijenta.value)
+  console.log('Odredište:', odrediste.value)
 }
 </script>
